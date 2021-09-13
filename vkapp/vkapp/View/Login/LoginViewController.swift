@@ -16,20 +16,20 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGesture()
+        self.addGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addObservers()
+        self.addObservers()
         
-        loginTextField.text = "account"
-        passwordTextField.text = "123456"
+        self.loginTextField.text = "account"
+        self.passwordTextField.text = "123456"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeObservers()
+        self.removeObservers()
     }
     
     private func addObservers() {
@@ -72,18 +72,18 @@ class LoginViewController: UIViewController {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             
         self.scrollView?.contentInset = contentInsets
-        scrollView?.scrollIndicatorInsets = contentInsets
+        self.scrollView?.scrollIndicatorInsets = contentInsets
     }
         
     @objc private func keyboardWillHide(notification: Notification) {
-        scrollView?.contentInset = .zero
+        self.scrollView?.contentInset = .zero
     }
     
     private func addGesture() {
         self.scrollView.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self,
-                action: #selector(hideKeyboard)
+                action: #selector(self.hideKeyboard)
             )
         )
     }
@@ -97,9 +97,11 @@ class LoginViewController: UIViewController {
         let password = self.passwordTextField.text
         
         if login == "account" && password == "123456" {
-            AppRouter().presentMainScene(from: self)
-        } else if login == "admin" && password == "admin" {
-            AppRouter().presentDebugScene(from: self)
+            guard let mainTabBarScene = Constant.Storyboard.mainTabBar.instantiateInitialViewController() as? UITabBarController else {
+                fatalError("Ошибка добавления MainTabBar.storyboard или идентификаторов")
+            }
+            mainTabBarScene.modalPresentationStyle = .fullScreen
+            present(mainTabBarScene, animated: true)
         } else {
             let alertController = UIAlertController(
                 title: "Ошибка",

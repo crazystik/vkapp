@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vup-rW-7xs">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="GoQ-i8-8iU">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBar" id="vup-rW-7xs" customClass="MainTabBarController" customModule="vkapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DaF-Jh-3mq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="iXQ-qc-8Wh" kind="relationship" relationship="viewControllers" id="jpN-RY-crI"/>
+                        <segue destination="rd6-0X-9GA" kind="relationship" relationship="viewControllers" id="2C7-Cb-STu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pS-aY-bMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-280" y="98"/>
+        </scene>
+        <!--Друзья-->
+        <scene sceneID="ufs-Ok-Ssc">
+            <objects>
+                <navigationController id="iXQ-qc-8Wh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Друзья" image="person.2.fill" catalog="system" id="7Ut-hv-phh"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5GG-X5-8IC">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yPW-jt-t6t" kind="relationship" relationship="rootViewController" id="Qpz-co-Arl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zMc-Qc-pjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="790"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="33w-s2-CFp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Friends" referencedIdentifier="Friends" id="yPW-jt-t6t" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="UH8-3d-bVC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aqv-so-cxZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-699" y="1195"/>
+        </scene>
+        <!--Группы-->
+        <scene sceneID="AS8-tP-lkN">
+            <objects>
+                <navigationController id="rd6-0X-9GA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Группы" image="person.3.fill" catalog="system" id="aJq-eE-L3v"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qWL-hI-Oyw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tpd-MZ-vFi" kind="relationship" relationship="rootViewController" id="LMq-tM-NZO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbH-HU-RBp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="790"/>
+        </scene>
+        <!--Groups-->
+        <scene sceneID="BLv-aU-Uxi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Groups" referencedIdentifier="Groups" id="tpd-MZ-vFi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="750-4h-gxu"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HTb-je-94m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="1195"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+    </resources>
+</document>
