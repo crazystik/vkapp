@@ -28,6 +28,9 @@
                 <constraint firstItem="hWT-gE-5P3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SFr-qd-hb3"/>
                 <constraint firstAttribute="trailing" secondItem="hWT-gE-5P3" secondAttribute="trailing" id="ee9-Jz-EPE"/>
             </constraints>
+            <connections>
+                <outlet property="userImageView" destination="hWT-gE-5P3" id="Atc-5h-YxC"/>
+            </connections>
             <point key="canvasLocation" x="42" y="100"/>
         </collectionViewCell>
     </objects>

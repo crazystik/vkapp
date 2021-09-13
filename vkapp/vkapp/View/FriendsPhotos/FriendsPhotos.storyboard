@@ -26,6 +26,10 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="Mjv-aq-qd9"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="ooF-FF-naq"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -37,6 +41,9 @@
                             <constraint firstItem="heF-tF-XOV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="s83-z8-cnv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="heF-tF-XOV" id="PEr-ma-HOo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

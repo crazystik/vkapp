@@ -26,6 +26,7 @@ class FriendsViewController: UIViewController {
     
     private func getFriends() {
         self.friendsData = [
+            .init(name: "Elizaveta Lazareva", avatarImage: .init(named: "foxes")!),
             .init(name: "Iov Zaytsev", avatarImage: .init(named: "cat0")!),
             .init(name: "Afonasei Kovalev", avatarImage: .init(named: "cat1")!),
             .init(name: "Nikolai Vlasov", avatarImage: .init(named: "cat2")!),
@@ -57,6 +58,14 @@ extension FriendsViewController: UITableViewDataSource {
 extension FriendsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? FriendTableViewCell)?.configure(with: friendsData[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let friendPhotoViewController = Constant.Storyboard.friendsPhotos.instantiateInitialViewController() as? FriendsPhotosViewController else {
+            fatalError()
+        }
+        friendPhotoViewController.photo = friendsData[indexPath.row].avatarImage
+        show(friendPhotoViewController, sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

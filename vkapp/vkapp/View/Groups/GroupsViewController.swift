@@ -19,20 +19,32 @@ class GroupsViewController: UIViewController {
         self.navigationItem.title = groupsTitle
         
         self.tableView.register(Constant.Cell.group.nib, forCellReuseIdentifier: Constant.Cell.group.identifier)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroups))
+        
         getUserGroups()
+    }
+    
+    @objc private func addGroups() {
+        guard let interestingGroupsViewController = Constant.Storyboard.interestingGroups.instantiateInitialViewController() else {
+            fatalError()
+        }
+        
+        interestingGroupsViewController.modalPresentationStyle = .fullScreen
+        show(interestingGroupsViewController, sender: self)
     }
     
     private func getUserGroups() {
         self.groups = [
-            .init(name: "Обычная группа по интересам", avatarImage: nil),
-            .init(name: "Обычная музыкальная группа", avatarImage: nil),
-            .init(name: "Что-то ещё обычное", avatarImage: nil),
-            .init(name: "Возможно, что-то интересное", avatarImage: nil),
-            .init(name: "КБ", avatarImage: nil),
-            .init(name: "Необычная группа по интересам", avatarImage: nil),
-            .init(name: "Необычная музыкальная группа", avatarImage: nil),
-            .init(name: "Навальный", avatarImage: nil),
-            .init(name: "¯\\_(ツ)_/¯", avatarImage: nil),
+            .init(name: "Обычная группа по интересам", avatarImage: UIImage(named: "cat1")),
+            .init(name: "Обычная музыкальная группа", avatarImage: UIImage(named: "cat2")),
+            .init(name: "Что-то ещё обычное", avatarImage: UIImage(named: "cat3")),
+            .init(name: "Возможно, что-то интересное", avatarImage: UIImage(named: "cat4")),
+            .init(name: "КБ", avatarImage: UIImage(named: "cat5")),
+            .init(name: "Необычная группа по интересам", avatarImage: UIImage(named: "cat6")),
+            .init(name: "Необычная музыкальная группа", avatarImage: UIImage(named: "cat7")),
+            .init(name: "Навальный", avatarImage: UIImage(named: "cat8")),
+            .init(name: "¯\\_(ツ)_/¯", avatarImage: UIImage(named: "cat9")),
         ]
         self.tableView.reloadData()
     }
@@ -55,5 +67,10 @@ extension GroupsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        self.groups.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }

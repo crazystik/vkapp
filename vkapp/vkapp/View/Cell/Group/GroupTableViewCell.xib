@@ -41,8 +41,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="groupImageView" destination="kXv-LW-Hue" id="5Yt-t0-e9S"/>
-                <outlet property="groupNameLabel" destination="Lu8-nQ-Gyk" id="tuz-Ya-vMW"/>
+                <outlet property="groupImageView" destination="kXv-LW-Hue" id="a6C-0s-yhz"/>
+                <outlet property="groupNameLabel" destination="Lu8-nQ-Gyk" id="WQ5-cC-4Xr"/>
             </connections>
             <point key="canvasLocation" x="139" y="100"/>
         </tableViewCell>

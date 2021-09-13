@@ -9,6 +9,10 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet private weak var userImageView: UIImageView!
     
+    func confiqure(with photo: UIImage?) {
+        self.userImageView.image = photo
+    }
 
 }
