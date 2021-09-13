@@ -25,6 +25,11 @@ class GroupsViewController: UIViewController {
         getUserGroups()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     @objc private func addGroups() {
         guard let interestingGroupsViewController = Constant.Storyboard.interestingGroups.instantiateInitialViewController() else {
             fatalError()
@@ -46,6 +51,11 @@ class GroupsViewController: UIViewController {
             .init(name: "Навальный", avatarImage: UIImage(named: "cat8")),
             .init(name: "¯\\_(ツ)_/¯", avatarImage: UIImage(named: "cat9")),
         ]
+        self.tableView.reloadData()
+    }
+    
+    public func set(group: Group) {
+        self.groups.append(group)
         self.tableView.reloadData()
     }
 }

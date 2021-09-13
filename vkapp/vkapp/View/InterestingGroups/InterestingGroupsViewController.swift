@@ -55,6 +55,11 @@ extension InterestingGroupsViewController: UITableViewDelegate {
         (cell as? GroupTableViewCell)?.configure(with: groups[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        (self.navigationController?.viewControllers.first(where: {($0 is GroupsViewController)}) as? GroupsViewController)?.set(group: self.groups[indexPath.row])
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }

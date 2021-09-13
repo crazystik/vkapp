@@ -16,7 +16,6 @@ class FriendsPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(Constant.Cell.photo.nib, forCellWithReuseIdentifier: Constant.Cell.photo.identifier)
-        
     }
     
 }
