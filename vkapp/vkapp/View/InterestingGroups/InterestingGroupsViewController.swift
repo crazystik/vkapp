@@ -49,7 +49,7 @@ extension InterestingGroupsViewController: UITableViewDataSource {
         return tableView.dequeueReusableCell(withIdentifier: Constant.Cell.group.identifier, for: indexPath) as! GroupTableViewCell
     }
 }
-
+    
 extension InterestingGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? GroupTableViewCell)?.configure(with: groups[indexPath.row])

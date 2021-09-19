@@ -9,11 +9,11 @@ import UIKit
 
 class FriendTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: AvatarView!
     @IBOutlet weak var nameLabel: UILabel!
     
     func configure(with user: User) {
-        self.avatarImageView.image = user.avatarImage
+        self.avatarImageView.avatarImage = user.avatarImage
         self.nameLabel.text = user.name
     }
 }

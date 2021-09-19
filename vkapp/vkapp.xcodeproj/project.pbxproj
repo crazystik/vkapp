@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F038A1926F5B886006616D3 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F038A1826F5B886006616D3 /* AvatarView.swift */; };
 		8F6327BB26ECBBAE003A291E /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6327BA26ECBBAE003A291E /* MainTabBar.storyboard */; };
 		8F6327BD26ECBFA0003A291E /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6327BC26ECBFA0003A291E /* Friends.storyboard */; };
 		8F6327BF26ECBFBB003A291E /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6327BE26ECBFBB003A291E /* FriendsViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F038A1826F5B886006616D3 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		8F6327BA26ECBBAE003A291E /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		8F6327BC26ECBFA0003A291E /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		8F6327BE26ECBFBB003A291E /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F038A1726F5B81B006616D3 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				8F038A1826F5B886006616D3 /* AvatarView.swift */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
 		8F6327B926ECBB8E003A291E /* MainTabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +106,7 @@
 		8F6327C126ECBFFF003A291E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8F038A1726F5B81B006616D3 /* Avatar */,
 				8F6327E826ECEFE4003A291E /* Cell */,
 				8FCAA55326E8AB760012B16B /* Login */,
 				8F6327B926ECBB8E003A291E /* MainTabbar */,
@@ -310,6 +321,7 @@
 				8F6327CA26ECC1A3003A291E /* GroupsViewController.swift in Sources */,
 				8F6327EE26ECF06B003A291E /* PhotoCollectionViewCell.swift in Sources */,
 				8F6327E626ECEDE4003A291E /* GroupTableViewCell.swift in Sources */,
+				8F038A1926F5B886006616D3 /* AvatarView.swift in Sources */,
 				8F6327E026ECE9DE003A291E /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
