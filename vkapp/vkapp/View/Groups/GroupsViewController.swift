@@ -9,7 +9,12 @@ import UIKit
 
 class GroupsViewController: UIViewController {
     
-    @IBOutlet private weak var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: GroupTableViewCell.identifier)
+        return tableView
+    }()
     
     private var groups: [Group] = []
     
@@ -18,11 +23,25 @@ class GroupsViewController: UIViewController {
         let groupsTitle = "Группы"
         self.navigationItem.title = groupsTitle
         
-        self.tableView.register(Constant.Cell.group.nib, forCellReuseIdentifier: Constant.Cell.group.identifier)
+        self.setRightBarButtonItem()
         
+        self.setTableView()
+        
+        self.getUserGroups()
+    }
+    
+    private func setRightBarButtonItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroups))
-        
-        getUserGroups()
+    }
+    
+    private func setTableView() {
+        self.view.addSubview(self.tableView)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,12 +50,10 @@ class GroupsViewController: UIViewController {
     }
     
     @objc private func addGroups() {
-        guard let interestingGroupsViewController = Constant.Storyboard.interestingGroups.instantiateInitialViewController() else {
-            fatalError()
-        }
+        let groupsViewController = GroupsViewController()
         
-        interestingGroupsViewController.modalPresentationStyle = .fullScreen
-        show(interestingGroupsViewController, sender: self)
+        groupsViewController.modalPresentationStyle = .fullScreen
+        show(groupsViewController, sender: self)
     }
     
     private func getUserGroups() {
@@ -66,7 +83,7 @@ extension GroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: Constant.Cell.group.identifier, for: indexPath) as! GroupTableViewCell
+        return tableView.dequeueReusableCell(withIdentifier: GroupTableViewCell.identifier, for: indexPath) as! GroupTableViewCell
     }
 }
 
@@ -76,7 +93,7 @@ extension GroupsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

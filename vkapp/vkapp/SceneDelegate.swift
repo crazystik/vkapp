@@ -21,9 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func handle(_ window: UIWindow?) {
-        guard let loginViewController = Constant.Storyboard.login.instantiateInitialViewController() as? LoginViewController else {
-            fatalError("ошибка добавления Login.storyboard, экрана или класса")
-        }
+        let loginViewController = LoginViewController()
         
         window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()

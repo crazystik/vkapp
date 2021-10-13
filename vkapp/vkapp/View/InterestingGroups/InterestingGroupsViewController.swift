@@ -9,19 +9,30 @@ import UIKit
 
 class InterestingGroupsViewController: UIViewController {
     
-    @IBOutlet private weak var groupsTableView: UITableView!
+    private lazy var groupsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: GroupTableViewCell.identifier)
+        return tableView
+    }()
     
     private var groups: [Group] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Интересное"
-        
-        self.groupsTableView.register(
-            Constant.Cell.group.nib,
-            forCellReuseIdentifier: Constant.Cell.group.identifier
-        )
-        getGroups()
+        self.setTableView()
+        self.getGroups()
+    }
+    
+    private func setTableView() {
+        self.view.addSubview(self.groupsTableView)
+        self.groupsTableView.delegate = self
+        self.groupsTableView.dataSource = self
+        self.groupsTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.groupsTableView.leftAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.groupsTableView.rightAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.groupsTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     private func getGroups() {
@@ -46,10 +57,10 @@ extension InterestingGroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: Constant.Cell.group.identifier, for: indexPath) as! GroupTableViewCell
+        return tableView.dequeueReusableCell(withIdentifier: GroupTableViewCell.identifier, for: indexPath) as! GroupTableViewCell
     }
 }
-
+    
 extension InterestingGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? GroupTableViewCell)?.configure(with: groups[indexPath.row])
@@ -61,6 +72,6 @@ extension InterestingGroupsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
 }

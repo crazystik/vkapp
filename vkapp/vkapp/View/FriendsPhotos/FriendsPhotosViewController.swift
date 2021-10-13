@@ -9,15 +9,32 @@ import UIKit
 
 class FriendsPhotosViewController: UIViewController {
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        return collectionView
+    }()
     
     public var photo: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register(Constant.Cell.photo.nib, forCellWithReuseIdentifier: Constant.Cell.photo.identifier)
+        self.setCollectionView()
+        self.collectionView.reloadData()
     }
     
+    private func setCollectionView() {
+        self.view.addSubview(self.collectionView)
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
 }
 
 extension FriendsPhotosViewController: UICollectionViewDataSource {
@@ -26,7 +43,7 @@ extension FriendsPhotosViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Cell.photo.identifier, for: indexPath)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath)
     }
 }
 
