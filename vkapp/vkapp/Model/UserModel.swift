@@ -8,6 +8,13 @@
 import UIKit
 
 struct User {
-    let name: String
-    let avatarImage: UIImage
+    let firstName: String
+    let lastName: String
+    let avatarImage: UIImage?
+}
+
+extension User {
+    func name() -> String {
+        return self.firstName + " " + self.lastName
+    }
 }
