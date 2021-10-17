@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F038A1926F5B886006616D3 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F038A1826F5B886006616D3 /* AvatarView.swift */; };
+		8F0DC334271C5660006AB80B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0DC333271C5660006AB80B /* Session.swift */; };
 		8F6327BF26ECBFBB003A291E /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6327BE26ECBFBB003A291E /* FriendsViewController.swift */; };
 		8F6327C626ECC118003A291E /* FriendsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6327C526ECC118003A291E /* FriendsPhotosViewController.swift */; };
 		8F6327CA26ECC1A3003A291E /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6327C926ECC1A3003A291E /* GroupsViewController.swift */; };
@@ -25,12 +26,14 @@
 		8FB4094426E5D4390089008F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FB4094326E5D4390089008F /* Assets.xcassets */; };
 		8FB4094726E5D4390089008F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FB4094526E5D4390089008F /* LaunchScreen.storyboard */; };
 		8FB882232717273100C6A323 /* FriendsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB882222717273100C6A323 /* FriendsData.swift */; };
+		8FB88226271730DA00C6A323 /* LiteralHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB88225271730DA00C6A323 /* LiteralHeader.swift */; };
 		8FF5A67626FC54C3006D7573 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF5A67526FC54C3006D7573 /* HeartView.swift */; };
 		8FF5A67A26FF70E6006D7573 /* IndexControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF5A67926FF70E6006D7573 /* IndexControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8F038A1826F5B886006616D3 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		8F0DC333271C5660006AB80B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		8F6327BE26ECBFBB003A291E /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		8F6327C526ECC118003A291E /* FriendsPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosViewController.swift; sourceTree = "<group>"; };
 		8F6327C926ECC1A3003A291E /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		8FB4094326E5D4390089008F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FB4094826E5D4390089008F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FB882222717273100C6A323 /* FriendsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsData.swift; sourceTree = "<group>"; };
+		8FB88225271730DA00C6A323 /* LiteralHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteralHeader.swift; sourceTree = "<group>"; };
 		8FCE880D270AFDD1004908F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FF5A67526FC54C3006D7573 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		8FF5A67926FF70E6006D7573 /* IndexControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexControl.swift; sourceTree = "<group>"; };
@@ -71,6 +75,15 @@
 				8F038A1826F5B886006616D3 /* AvatarView.swift */,
 			);
 			path = Avatar;
+			sourceTree = "<group>";
+		};
+		8F0DC332271C55C9006AB80B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8FB4093A26E5D4340089008F /* AppDelegate.swift */,
+				8FB4093C26E5D4340089008F /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		8F6327B926ECBB8E003A291E /* MainTabbar */ = {
@@ -142,6 +155,7 @@
 				8F6327DF26ECE9DE003A291E /* UserModel.swift */,
 				8F6327E126ECEA8C003A291E /* GroupModel.swift */,
 				8FB882222717273100C6A323 /* FriendsData.swift */,
+				8F0DC333271C5660006AB80B /* Session.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +171,7 @@
 		8F6327E826ECEFE4003A291E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8FB88224271730B500C6A323 /* LiteralHeader */,
 				8F6327E926ECF04A003A291E /* Photo */,
 				8F6327D726ECE928003A291E /* Friend */,
 				8F6327E326ECEDC4003A291E /* Group */,
@@ -210,8 +225,7 @@
 		8FB4093926E5D4340089008F /* vkapp */ = {
 			isa = PBXGroup;
 			children = (
-				8FB4093A26E5D4340089008F /* AppDelegate.swift */,
-				8FB4093C26E5D4340089008F /* SceneDelegate.swift */,
+				8F0DC332271C55C9006AB80B /* App */,
 				8F6327DE26ECE9C9003A291E /* Model */,
 				8F6327C126ECBFFF003A291E /* View */,
 				8FB4094326E5D4390089008F /* Assets.xcassets */,
@@ -219,6 +233,14 @@
 				8FB4094826E5D4390089008F /* Info.plist */,
 			);
 			path = vkapp;
+			sourceTree = "<group>";
+		};
+		8FB88224271730B500C6A323 /* LiteralHeader */ = {
+			isa = PBXGroup;
+			children = (
+				8FB88225271730DA00C6A323 /* LiteralHeader.swift */,
+			);
+			path = LiteralHeader;
 			sourceTree = "<group>";
 		};
 		8FCAA55326E8AB760012B16B /* Login */ = {
@@ -306,7 +328,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F0DC334271C5660006AB80B /* Session.swift in Sources */,
 				8F6327C626ECC118003A291E /* FriendsPhotosViewController.swift in Sources */,
+				8FB88226271730DA00C6A323 /* LiteralHeader.swift in Sources */,
 				8FB4093F26E5D4340089008F /* LoginViewController.swift in Sources */,
 				8F702B3926FC012F00F4BDD9 /* LikeControl.swift in Sources */,
 				8F6327D626ECD65B003A291E /* MainTabBarController.swift in Sources */,
