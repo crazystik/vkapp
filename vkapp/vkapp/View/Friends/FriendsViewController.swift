@@ -16,7 +16,9 @@ class FriendsViewController: UIViewController {
         return tableView
     }()
     
-    private var friendsData: [FriendsData] = []
+    private var friendsData: [Friends] = []
+    
+    private let service = VKService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +62,14 @@ class FriendsViewController: UIViewController {
         ]
         
         dataSource.forEach { user in
-            if let value = self.friendsData.first(where: { (friendsDataValue: FriendsData) in
+            if let value = self.friendsData.first(where: { (friendsDataValue: Friends) in
                 return friendsDataValue.firstLiteral.uppercased() == String(user.lastName.first ?? Character("")).uppercased()
             }) {
                 value.users.append(user)
             } else {
                 self.friendsData.append(
                     (
-                        FriendsData(firstLiteral: String(user.lastName.first ?? Character("")),
+                        Friends(firstLiteral: String(user.lastName.first ?? Character("")),
                                     users: [user])
                     )
                 )
@@ -76,6 +78,9 @@ class FriendsViewController: UIViewController {
         self.friendsData.sort(by: {$0.firstLiteral < $1.firstLiteral})
         self.tableView.reloadData()
         self.setIndexControl()
+        self.service.friends { _ in
+            
+        }
     }
     
     private func setIndexControl() {
