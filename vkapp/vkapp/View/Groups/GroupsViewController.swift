@@ -72,7 +72,7 @@ class GroupsViewController: UIViewController {
         ]
         self.tableView.reloadData()
         
-        self.service.groups {  in
+        self.service.groups { _ in
             
         }
     }
