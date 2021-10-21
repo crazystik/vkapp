@@ -1,5 +1,5 @@
 //
-//  FriendsData.swift
+//  Friends.swift
 //  vkapp
 //
 //  Created by Pavel Lazarev on 13.10.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FriendsData {
+class Friends {
     let firstLiteral: String
     var users: [User]
     

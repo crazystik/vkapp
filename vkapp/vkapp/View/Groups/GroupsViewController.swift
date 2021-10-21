@@ -18,6 +18,8 @@ class GroupsViewController: UIViewController {
     
     private var groups: [Group] = []
     
+    private let service = VKService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let groupsTitle = "Группы"
@@ -69,6 +71,10 @@ class GroupsViewController: UIViewController {
             .init(name: "¯\\_(ツ)_/¯", avatarImage: UIImage(named: "cat9")),
         ]
         self.tableView.reloadData()
+        
+        self.service.groups { _ in
+            
+        }
     }
     
     public func set(group: Group) {
