@@ -9,10 +9,10 @@ import Foundation
 
 class Friends {
     let firstLiteral: String
-    var users: [User]
+    var friends: [Friend]
     
-    init(firstLiteral: String, users: [User]) {
+    init(firstLiteral: String, friends: [Friend]) {
         self.firstLiteral = firstLiteral
-        self.users = users
+        self.friends = friends
     }
 }

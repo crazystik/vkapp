@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Group {
+struct GroupModel {
     let name: String
     let avatarImage: UIImage?
 }

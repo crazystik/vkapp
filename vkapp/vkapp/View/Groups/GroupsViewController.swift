@@ -16,9 +16,15 @@ class GroupsViewController: UIViewController {
         return tableView
     }()
     
-    private var groups: [Group] = []
+    private var groups: [Group] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-    private let service = VKService()
+    private let service = GroupsAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,46 +46,27 @@ class GroupsViewController: UIViewController {
         self.view.addSubview(self.tableView)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.reloadData()
-    }
-    
     @objc private func addGroups() {
-        let groupsViewController = GroupsViewController()
+        let interestingGroupsViewController = InterestingGroupsViewController()
         
-        groupsViewController.modalPresentationStyle = .fullScreen
-        show(groupsViewController, sender: self)
+        interestingGroupsViewController.modalPresentationStyle = .fullScreen
+        show(interestingGroupsViewController, sender: self)
     }
     
     private func getUserGroups() {
-        self.groups = [
-            .init(name: "Обычная группа по интересам", avatarImage: UIImage(named: "cat1")),
-            .init(name: "Обычная музыкальная группа", avatarImage: UIImage(named: "cat2")),
-            .init(name: "Что-то ещё обычное", avatarImage: UIImage(named: "cat3")),
-            .init(name: "Возможно, что-то интересное", avatarImage: UIImage(named: "cat4")),
-            .init(name: "КБ", avatarImage: UIImage(named: "cat5")),
-            .init(name: "Необычная группа по интересам", avatarImage: UIImage(named: "cat6")),
-            .init(name: "Необычная музыкальная группа", avatarImage: UIImage(named: "cat7")),
-            .init(name: "Навальный", avatarImage: UIImage(named: "cat8")),
-            .init(name: "¯\\_(ツ)_/¯", avatarImage: UIImage(named: "cat9")),
-        ]
-        self.tableView.reloadData()
-        
-        self.service.groups { _ in
-            
+        self.service.groups { groups in
+            self.groups = groups
         }
     }
     
     public func set(group: Group) {
         self.groups.append(group)
-        self.tableView.reloadData()
     }
 }
 

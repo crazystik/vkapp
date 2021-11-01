@@ -18,7 +18,20 @@ class FriendsPhotosViewController: UIViewController {
         return collectionView
     }()
     
-    public var photo: UIImage?
+    private let service = PhotoAPI()
+    private var photos = [Photos]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    public var ownerId: Int! {
+        didSet {
+            self.getPhotos()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +43,22 @@ class FriendsPhotosViewController: UIViewController {
         self.view.addSubview(self.collectionView)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    private func getPhotos() {
+        self.service.photos(ownerId: String(self.ownerId)) { photos in
+            self.photos = photos
+        }
     }
 }
 
 extension FriendsPhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,7 +68,7 @@ extension FriendsPhotosViewController: UICollectionViewDataSource {
 
 extension FriendsPhotosViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as? PhotoCollectionViewCell)?.confiqure(with: photo)
+        (cell as? PhotoCollectionViewCell)?.confiqure(with: self.photos[indexPath.row].sizes.first?.url)
     }
 }
 

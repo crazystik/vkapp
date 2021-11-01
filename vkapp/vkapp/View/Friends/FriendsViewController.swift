@@ -18,7 +18,7 @@ class FriendsViewController: UIViewController {
     
     private var friendsData: [Friends] = []
     
-    private let service = VKService()
+    private let service = FriendsAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,56 +38,43 @@ class FriendsViewController: UIViewController {
         self.view.addSubview(tableView)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     private func getFriends() {
-        let dataSource: [User] = [
-            .init(firstName: "Elizaveta", lastName: "Lazareva", avatarImage: .init(named: "foxes")!),
-            .init(firstName: "Iov", lastName: "Zaytsev", avatarImage: .init(named: "cat0")!),
-            .init(firstName: "Afonasei", lastName: "Kovalev", avatarImage: .init(named: "cat1")!),
-            .init(firstName: "Nikolai", lastName: "Vlasov", avatarImage: .init(named: "cat2")!),
-            .init(firstName: "Vanya", lastName: "Romanov", avatarImage: .init(named: "cat3")!),
-            .init(firstName: "Pavel", lastName: "Orlov", avatarImage: .init(named: "cat4")!),
-            .init(firstName: "Faddei", lastName: "Stepanov", avatarImage: .init(named: "cat5")!),
-            .init(firstName: "Yaroslav", lastName: "Egorov", avatarImage: .init(named: "cat6")!),
-            .init(firstName: "Serafim", lastName: "Vinogradov", avatarImage: .init(named: "cat7")!),
-            .init(firstName: "Zakhar", lastName: "Zhukov", avatarImage: .init(named: "cat8")!),
-            .init(firstName: "Karpacho", lastName: "Dmitriev", avatarImage: .init(named: "cat9")!),
-            .init(firstName: "Kazimir", lastName: "Smirnov", avatarImage: .init(named: "cat10")!),
-            .init(firstName: "Slava", lastName: "Kovalev", avatarImage: .init(named: "cat11")!),
-        ]
-        
-        dataSource.forEach { user in
-            if let value = self.friendsData.first(where: { (friendsDataValue: Friends) in
-                return friendsDataValue.firstLiteral.uppercased() == String(user.lastName.first ?? Character("")).uppercased()
-            }) {
-                value.users.append(user)
-            } else {
-                self.friendsData.append(
-                    (
-                        Friends(firstLiteral: String(user.lastName.first ?? Character("")),
-                                    users: [user])
+        self.service.friends { [weak self] friends in
+            friends.forEach { friend in
+                if let value = self?.friendsData.first(where: { (friendsDataValue: Friends) in
+                    return friendsDataValue.firstLiteral.uppercased() == String(friend.lastName.first ?? Character("")).uppercased()
+                }) {
+                    value.friends.append(friend)
+                } else {
+                    self?.friendsData.append(
+                        (
+                            Friends(
+                                firstLiteral: String(friend.lastName.first ?? Character("")),
+                                friends: [friend]
+                            )
+                        )
                     )
-                )
+                }
             }
-        }
-        self.friendsData.sort(by: {$0.firstLiteral < $1.firstLiteral})
-        self.tableView.reloadData()
-        self.setIndexControl()
-        self.service.friends { _ in
-            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.setIndexControl()
+            }
         }
     }
     
     private func setIndexControl() {
         let control = IndexControl()
         self.view.addSubview(control)
+        control.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        control.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         control.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        control.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
         control.setItems(from: self.friendsData.compactMap({$0.firstLiteral})) { item in
             print(item)
@@ -112,7 +99,7 @@ extension FriendsViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return self.friendsData[section].users.count
+        return self.friendsData[section].friends.count
     }
     
     func tableView(
@@ -133,7 +120,7 @@ extension FriendsViewController: UITableViewDelegate {
         willDisplay cell: UITableViewCell,
         forRowAt indexPath: IndexPath
     ) {
-        (cell as? FriendTableViewCell)?.configure(with: friendsData[indexPath.section].users[indexPath.row])
+        (cell as? FriendTableViewCell)?.configure(with: friendsData[indexPath.section].friends[indexPath.row])
     }
     
     func tableView(
@@ -142,7 +129,7 @@ extension FriendsViewController: UITableViewDelegate {
     ) {
         let friendPhotoViewController = FriendsPhotosViewController()
         friendPhotoViewController.modalPresentationStyle = .fullScreen
-        friendPhotoViewController.photo = friendsData[indexPath.section].users[indexPath.row].avatarImage
+        friendPhotoViewController.ownerId = friendsData[indexPath.section].friends[indexPath.row].id
         show(friendPhotoViewController, sender: self)
     }
     

@@ -24,9 +24,22 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         return control
     }()
     
-    func confiqure(with photo: UIImage?) {
-        self.setImageView(with: photo)
-        self.setLikeControl()
+    func confiqure(with photoURLString: String?) {
+        guard let photoURLString = photoURLString,
+              let photoURL = URL(string: photoURLString)
+        else { return }
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(
+                with: photoURL
+            ) { data, response, error in
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    self.setImageView(with: UIImage(data: data))
+                    self.setLikeControl()
+                }
+            }.resume()
+        }
+        
     }
     
     private func setImageView(with image: UIImage?) {

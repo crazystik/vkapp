@@ -16,7 +16,15 @@ class InterestingGroupsViewController: UIViewController {
         return tableView
     }()
     
-    private var groups: [Group] = []
+    private let service = GroupsAPI()
+    
+    private var groups: [Group] = [] {
+        didSet {
+            self.groupsTableView.reloadData()
+        }
+    }
+    
+    private var searchText: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,18 +44,11 @@ class InterestingGroupsViewController: UIViewController {
     }
     
     private func getGroups() {
-        self.groups = [
-            .init(name: "Обычная группа по интересам", avatarImage: UIImage(named: "cat1")),
-            .init(name: "Обычная музыкальная группа", avatarImage: UIImage(named: "cat2")),
-            .init(name: "Что-то ещё обычное", avatarImage: UIImage(named: "cat3")),
-            .init(name: "Возможно, что-то интересное", avatarImage: UIImage(named: "cat4")),
-            .init(name: "КБ", avatarImage: UIImage(named: "cat5")),
-            .init(name: "Необычная группа по интересам", avatarImage: UIImage(named: "cat6")),
-            .init(name: "Необычная музыкальная группа", avatarImage: UIImage(named: "cat7")),
-            .init(name: "Навальный", avatarImage: UIImage(named: "cat8")),
-            .init(name: "¯\\_(ツ)_/¯", avatarImage: UIImage(named: "cat9")),
-        ]
-        self.groupsTableView.reloadData()
+        self.service.searchGroups(
+            searchText: self.searchText
+        ) { groups in
+            self.groups = groups
+        }
     }
 }
 

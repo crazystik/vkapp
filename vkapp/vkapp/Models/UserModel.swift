@@ -7,14 +7,12 @@
 
 import UIKit
 
-struct User {
+struct UserModel {
     let firstName: String
     let lastName: String
     let avatarImage: UIImage?
-}
-
-extension User {
-    func name() -> String {
-        return self.firstName + " " + self.lastName
+    
+    var fullName: String {
+        self.firstName + " " + self.lastName
     }
 }
